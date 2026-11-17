@@ -14,7 +14,7 @@
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "alwaysStrict": true,
-        "esModuleInterop": true,
+        "esModuleInterop": true, 
         "checkJs": true,
         "jsx": "preserve",
         "resolveJsonModule": true

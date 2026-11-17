@@ -22,7 +22,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@test.com',
             'password' => 'wordpass'
         ]);
-
-        User::factory(10)->create();
     }
 }
