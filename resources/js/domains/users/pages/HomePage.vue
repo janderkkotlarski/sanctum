@@ -10,7 +10,6 @@ import { getRequest } from '../../../services/http';
 //     password: string;
 // }
 
-const users = ref();
 
 // const getUser = async () => {
 //     const {data} = await getRequest(`api/users/${1}`);
@@ -20,9 +19,18 @@ const users = ref();
 
 // getUser();
 
+const users = ref();
+
+const getUsers = async () => {
+    const {data} = await getRequest(`/users`);
+    if (!data) return;
+    users.value = data;
+}
+
+getUsers();
 
 </script>
 
 <template>
-    $users
+    {{ users }}
 </template>
