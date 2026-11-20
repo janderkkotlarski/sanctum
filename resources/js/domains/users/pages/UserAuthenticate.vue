@@ -2,25 +2,41 @@
 import { ref } from 'vue';
 import { getRequest } from '../../../services/http';
 
-// type User = {
-//     id: number;
-//     name: string;
-//     email: string;
-//     password: string;
-// }
+const users = ref();
 
-const user = ref();
+const failed = ref(0);
 
-const getUser = async () => {
-    const {data} = await getRequest(`/user/${1}`);
-    if (!data) return;
-    user.value = data;
+const submitData = ref(
+    { email: "", password: "" }
+);
+
+const handleSubmit = async () => {
+    const container = submitData;
+    const {data} = await getRequest(`/users`);
+    if (!data) {
+        ++failed.value;
+        return;
+    }
+    users.value = data;
+    --failed.value;
 }
-
-getUser();
 
 </script>
 
 <template>
-    {{ user }}
+    <form @submit.prevent="handleSubmit">
+        <label>Email</label>
+        <input v-model="submitData.email" type="text" />   
+        
+        <br />
+    
+        <label>Wachtwoord</label>
+        <input v-model="submitData.password" type="password" />
+
+        <br />
+
+        <button type="submit">Opslaan</button>
+    </form>
+
+    {{ submitData }}
 </template>
