@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { getRequest } from '../../../services/http';
+import { getRequest, postRequest } from '../../../services/http';
 
 const users = ref();
+
+const user = ref();
 
 const failed = ref(0);
 
@@ -11,15 +13,20 @@ const submitData = ref(
 );
 
 const handleSubmit = async () => {
-    const container = submitData;
-    const {data} = await getRequest(`/users`);
+    // const container = submitData;
+    const {data} = await postRequest(`/users/`, submitData);
     if (!data) {
-        ++failed.value;
+        failed.value = 10;
         return;
     }
-    users.value = data;
-    --failed.value;
+
+    failed.value = -10;
+    user.value = data;
 }
+
+// const byEmail = (email: string) => {
+//     users.value.
+// }
 
 </script>
 
@@ -38,5 +45,19 @@ const handleSubmit = async () => {
         <button type="submit">Opslaan</button>
     </form>
 
-    {{ submitData }}
+    <br />
+
+    SubmitData: {{ submitData }}
+
+    <br />
+
+    Users: {{ users }}
+
+    <br />
+
+    User: {{ user }}
+
+    <br />
+
+    Failed: {{ failed }}
 </template>
