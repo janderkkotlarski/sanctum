@@ -12,7 +12,7 @@ class UserController extends Controller
         return UserResource::collection(User::all());
     }
 
-    public function login(Requst $request) {
-        return "trollops";
+    public function login(Request $request) {
+        return redirect('/');
     }
 }

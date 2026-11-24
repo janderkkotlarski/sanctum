@@ -14,7 +14,8 @@ const submitData = ref(
 
 const handleSubmit = async () => {
     // const container = submitData;
-    const {data} = await postRequest(`/users/`, submitData);
+    // const {data} = await postRequest(`/users/`, submitData);
+    const {data} = await postRequest(`/login`, submitData.value);
     if (!data) {
         failed.value = 10;
         return;
