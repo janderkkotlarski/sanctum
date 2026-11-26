@@ -2,8 +2,6 @@
 import { ref } from 'vue';
 import { getRequest, postRequest } from '../../../services/http';
 
-const users = ref();
-
 const user = ref();
 
 const failed = ref(0);
@@ -22,7 +20,7 @@ const handleSubmit = async () => {
     for (let index = 0; index < length; ++index) {
         ssapdrow += submitData.value.password[length - 1 - index];
     }
-    
+
     const { data } = await postRequest(`/signin`, [ submitData.value.email, ssapdrow ]);
     if (!data) {
         failed.value = 10;
@@ -32,10 +30,6 @@ const handleSubmit = async () => {
     failed.value = -10;
     user.value = data;
 }
-
-// const byEmail = (email: string) => {
-//     users.value.
-// }
 
 </script>
 
@@ -57,10 +51,6 @@ const handleSubmit = async () => {
     <br />
 
     SubmitData: {{ submitData }}
-
-    <br />
-
-    Users: {{ users }}
 
     <br />
 
