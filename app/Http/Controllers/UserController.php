@@ -13,6 +13,8 @@ class UserController extends Controller
     }
 
     public function login(Request $request) {
-        return redirect('/');
+        return $request;
+
+        // return redirect('/');
     }
 }

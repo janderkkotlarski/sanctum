@@ -13,9 +13,17 @@ const submitData = ref(
 );
 
 const handleSubmit = async () => {
-    // const container = submitData;
-    // const {data} = await postRequest(`/users/`, submitData);
-    const {data} = await postRequest(`/login`, submitData.value);
+    // the first relative address needs to match the first name in the corresponding route
+
+    let ssapdrow = '';
+
+    const length = submitData.value.password.length;
+
+    for (let index = 0; index < length; ++index) {
+        ssapdrow += submitData.value.password[length - 1 - index];
+    }
+    
+    const { data } = await postRequest(`/signin`, [ submitData.value.email, ssapdrow ]);
     if (!data) {
         failed.value = 10;
         return;
@@ -56,7 +64,7 @@ const handleSubmit = async () => {
 
     <br />
 
-    User: {{ user }}
+    User type: {{ typeof user }} || login data: {{ user }}
 
     <br />
 

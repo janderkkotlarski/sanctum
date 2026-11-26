@@ -6,7 +6,8 @@ use App\Http\Controllers\UserController;
 
 Route::get('/users', [UserController::class, 'index']);
 
-Route::post('/users', [UserController::class, 'login']);
+// The names need to match exactly, the first one with 
+Route::post('/signin', [UserController::class, 'login']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();
