@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import axios from 'axios';
 import { getRequest, postRequest } from '../../../services/http';
 
 const user = ref();
@@ -31,6 +32,16 @@ const handleSubmit = async () => {
     user.value = data;
 }
 
+const tested = ref();
+
+const axiosTester = async() => {
+    const tester = await axios.get('hello');
+
+    console.log(tester);
+
+    tested.value = tester;
+}
+
 </script>
 
 <template>
@@ -59,4 +70,12 @@ const handleSubmit = async () => {
     <br />
 
     Failed: {{ failed }}
+
+    <br />
+
+    <button @click="axiosTester">Test Axios</button>
+
+    <br />
+
+    Tested axios: {{ tested }}
 </template>
