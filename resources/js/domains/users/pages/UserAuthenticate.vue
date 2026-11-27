@@ -13,16 +13,7 @@ const submitData = ref(
 
 const handleSubmit = async () => {
     // the first relative address needs to match the first name in the corresponding route
-
-    let ssapdrow = '';
-
-    const length = submitData.value.password.length;
-
-    for (let index = 0; index < length; ++index) {
-        ssapdrow += submitData.value.password[length - 1 - index];
-    }
-
-    const { data } = await postRequest(`/signin`, [ submitData.value.email, ssapdrow ]);
+    const { data } = await postRequest(`/signin`, submitData.value);
     if (!data) {
         failed.value = 10;
         return;
